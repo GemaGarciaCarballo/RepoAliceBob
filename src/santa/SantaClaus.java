@@ -1,9 +1,18 @@
-package com.polonorte;
+package santa;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.Month;
 
 //Esta clase describe a un santa claus y la creó Baltasar. Se considera que es la versión 1.2 del programa
+/**
+ * CLass SantaClus.
+ * Representa el padre de SantaClaus
+ * 
+ * @author sofia
+ * @version 1.0
+ *
+ */
 public class SantaClaus {
 
 	// Los kilos de peso de SantaClaus
@@ -14,12 +23,22 @@ public class SantaClaus {
 
 	private String caracterActual;
 
+	/**
+	 * Constructor de SantaClaus, construimos un Santa Clus
+	 */
 	public SantaClaus() {
 		this.trabajando = false;
 		this.caracterActual = Utils.CARACTER_AMIGABLE;
 	}
 
 	// (Este método se ha introducido desde la versión 1.1)
+	/**
+	 * Método hacer que el SantaClaus saludar
+	 * 
+	 * @param caracter el caracter de SantaClus, puede ser amigable,cabreado,furioso
+	 * @return saludo de SantaClaus , la frase que se saluda SantaClaus dependiendo su caracter
+	 * @since 1.1
+	 */
 	public String generarSaludoSegunCaracter(String caracter) {
 
 		String saludo;
@@ -43,10 +62,16 @@ public class SantaClaus {
 	// (Este método se ha introducido desde la versión 1.2)
 	// Incluir con javadoc que se lanza la DatosInvalidosException (mirar ->
 	// https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#@exception)
-	public boolean comprobarTrabajo(LocalDate fecha) throws DatosInvalidosException {
+	/**
+	 * Método que comprueba que si está trabajando el SantaClaus en una dterminada fecha
+	 * @param fecha la fecha que quiere comprobar que si está trabajando el SantaClaus
+	 * @return true, cuando fecha de 25 de diciembre ; false , la fecha introducida no trabaja el SantaClaus
+	 * @throws DatosInvalidosException si la fecha es nulo.
+	 */
+	public boolean comprobarTrabajo(LocalDate fecha) throws DateTimeException {
 
 		if (fecha == null) {
-			throw new DatosInvalidosException("La fecha no puede ser nula");
+			throw new DateTimeException("La fecha no puede ser nula");
 		}
 
 		if (fecha.getMonth().equals(Month.DECEMBER) && fecha.getDayOfMonth() == 25) {
@@ -61,6 +86,11 @@ public class SantaClaus {
 	// Este metodo está desde la versión 0.5. se tiene que considerar obsoleto, y
 	// referenciar al metodo
 	// generarSaludoSegunCaracter
+	/**
+	 * Método que hacer el SantaClus que te saluda 
+	 * @return saludo de SantaClaus, la frase de saludar el SantaClaus
+	 * @deprecated NO USAR MÁS, MEJOR usar {@link #generarSaludoSegunCaracter(String)}
+	 */
 	public String saludar() {
 		return "hohoho";
 	}
